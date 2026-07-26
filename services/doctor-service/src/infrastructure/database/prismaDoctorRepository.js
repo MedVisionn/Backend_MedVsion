@@ -25,6 +25,14 @@ class PrismaDoctorRepository extends DoctorRepository {
     return new Doctor(doctor);
   }
 
+  async findByEmail(email) {
+    const doctor = await prisma.doctor.findUnique({
+      where: { email }
+    });
+    if (!doctor) return null;
+    return new Doctor(doctor);
+  }
+
   async update(id, doctorData) {
     const updated = await prisma.doctor.update({
       where: { id },

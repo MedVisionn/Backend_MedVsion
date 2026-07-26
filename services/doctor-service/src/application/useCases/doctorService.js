@@ -1,11 +1,17 @@
 import doctorRepository from '../../infrastructure/database/prismaDoctorRepository.js';
+import { publishDoctorCreated } from '../../infrastructure/rabbitmq/DoctorEventPublisher.js';
 
 class DoctorService {
   async createDoctor(doctorData) {
-    if (!doctorData.email || !doctorData.passwordHash || !doctorData.firstName || !doctorData.lastName) {
+    if (!doctorData.email || !doctorData.firstName || !doctorData.lastName) {
       throw new Error('Missing required fields');
     }
-    return await doctorRepository.create(doctorData);
+    const doctor = await doctorRepository.create(doctorData);
+    
+    // Publish domain event
+    await publishDoctorCreated(doctor);
+    
+    return doctor;
   }
 
   async getAllDoctors() {
@@ -35,6 +41,7 @@ class DoctorService {
     }
     return await doctorRepository.delete(id);
   }
+
 }
 
 export default new DoctorService();
