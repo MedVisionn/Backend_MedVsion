@@ -2,8 +2,8 @@ import PatientRepository from '../../infrastructure/database/prismaPatientReposi
 
 class PatientService {
   async createPatient(PatientData) {
-    if (!PatientData.name || !PatientData.logo_url) {
-      throw new Error('Name and logo_url are required');
+    if (!PatientData.doctor_id || !PatientData.first_name || !PatientData.last_name) {
+      throw new Error('doctor_id, first_name, and last_name are required');
     }
     return await PatientRepository.create(PatientData);
   }

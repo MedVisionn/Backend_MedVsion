@@ -9,4 +9,4 @@ class PatientRepository {
   async delete(id) { throw new Error('Not implemented'); }
 }
 
-export default patientRepository;
+export default PatientRepository;

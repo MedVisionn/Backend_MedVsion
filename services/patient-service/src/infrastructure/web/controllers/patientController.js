@@ -6,7 +6,7 @@ class PatientController {
       const Patient = await PatientService.createPatient(req.body);
       res.status(201).json({ success: true, data: Patient });
     } catch (error) {
-      if (error.message === 'Name and logo_url are required') {
+      if (error.message === 'doctor_id, first_name, and last_name are required') {
         return res.status(400).json({ success: false, message: error.message });
       }
       res.status(500).json({ success: false, message: error.message });

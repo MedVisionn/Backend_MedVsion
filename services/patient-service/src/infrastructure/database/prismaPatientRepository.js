@@ -9,12 +9,12 @@ class PrismapatientRepository extends PatientRepository {
     const created = await prisma.patient.create({
       data: patientData
     });
-    return new patient(created);
+    return new Patient(created);
   }
 
   async findAll() {
     const patients = await prisma.patient.findMany();
-    return patients.map(patient => new patient(patient));
+    return patients.map(patient => new Patient(patient));
   }
 
   async findById(id) {
@@ -22,7 +22,7 @@ class PrismapatientRepository extends PatientRepository {
       where: { id }
     });
     if (!patient) return null;
-    return new patient(patient);
+    return new Patient(patient);
   }
 
   async update(id, patientData) {
@@ -30,14 +30,14 @@ class PrismapatientRepository extends PatientRepository {
       where: { id },
       data: patientData
     });
-    return new patient(updated);
+    return new Patient(updated);
   }
 
   async delete(id) {
     const deleted = await prisma.patient.delete({
       where: { id }
     });
-    return new patient(deleted);
+    return new Patient(deleted);
   }
 }
 
