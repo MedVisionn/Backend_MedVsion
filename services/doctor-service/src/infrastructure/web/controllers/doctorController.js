@@ -3,6 +3,7 @@ import doctorService from '../../../application/useCases/doctorService.js';
 class DoctorController {
   async createDoctor(req, res) {
     try {
+      console.log("req.body", req.body);
       const doctor = await doctorService.createDoctor(req.body);
       res.status(201).json({ success: true, data: doctor });
     } catch (error) {

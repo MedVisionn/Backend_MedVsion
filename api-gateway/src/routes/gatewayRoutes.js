@@ -7,7 +7,7 @@ const router = express.Router();
 
 // Here we can apply authMiddleware to specific routes if needed
 router.use('/offices', createTargetProxy(services.office, 'Office'));
-router.use('/doctors', createTargetProxy(services.doctor, 'Doctor'));
+router.post('/doctors', createTargetProxy(services.doctor, 'Doctor'));
 // e.g. router.use('/auth', createTargetProxy(services.auth, 'Auth'));
 
 export default router;

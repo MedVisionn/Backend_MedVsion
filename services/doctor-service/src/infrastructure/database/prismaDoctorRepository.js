@@ -6,6 +6,7 @@ const prisma = new PrismaClient();
 
 class PrismaDoctorRepository extends DoctorRepository {
   async create(doctorData) {
+    console.log("doctorData", doctorData);
     const created = await prisma.doctor.create({
       data: doctorData
     });
