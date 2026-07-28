@@ -9,5 +9,6 @@ export const ENV = {
     OFFICE_SERVICE: 'office-service',
     DOCTOR_SERVICE: 'doctor-service',
     AUTH_SERVICE: 'auth-service', 
+    PATIENT_SERVICE: 'patient-service',
   }
 };

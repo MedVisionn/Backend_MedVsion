@@ -23,7 +23,7 @@ const authController = new AuthController(loginUseCase);
 const authRoutes = createAuthRoutes(authController);
 
 // 2. Mount Routes
-app.use('/auth', authRoutes);
+app.use('/api/auth', authRoutes);
 
 // Health check
 app.get('/health', (req, res) => {
