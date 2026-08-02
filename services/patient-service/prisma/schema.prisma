@@ -8,14 +8,26 @@ datasource db {
 }
 
 model patient {
-  id            String    @id @default(uuid())
-  doctor_id     String
-  first_name    String
-  last_name     String
-  gender        String?
-  date_of_birth DateTime?
-  phone         String?
-  notes         String?
-  created_at    DateTime? @default(now())
-  updated_at    DateTime? @updatedAt
+  id                String                    @id @default(uuid())
+  doctor_id         String
+  first_name        String
+  last_name         String
+  gender            String?
+  date_of_birth     DateTime?
+  phone             String?
+  notes             String?
+  created_at        DateTime?                 @default(now())
+  updated_at        DateTime?                 @updatedAt
+  medical_histories patient_medical_history[]
+}
+
+model patient_medical_history {
+  history_id         String    @id @default(uuid())
+  patient_id         String
+  allergies          Json?
+  chronic_conditions Json?
+  medications        Json?
+  notes              String?
+  updated_at         DateTime? @default(now())
+  patient            patient   @relation(fields: [patient_id], references: [id], onDelete: Cascade)
 }
