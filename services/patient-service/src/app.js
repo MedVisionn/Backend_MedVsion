@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import patientRoutes from './infrastructure/web/routes/patientRoutes.js';
+import medicalHistoryRoutes from './infrastructure/web/routes/medicalHistoryRoutes.js';
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.get('/health', (req, res) => {
 });
 
 app.use('/api/patients', patientRoutes);
+app.use('/api/medical-histories', medicalHistoryRoutes);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
